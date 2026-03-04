@@ -17,49 +17,49 @@ public class MainApp {
 
         while (choice.equalsIgnoreCase("y")) {
             System.out.println("--- Enter User Details ---");
+            try {
+                System.out.print("Full Name     : ");
+                String name = sc.nextLine().trim();
+                if (!InputValidator.isValidName(name))
+                    throw new InvalidUserDataException("name", name);
 
-            System.out.print("Full Name     : ");
-            String name = sc.nextLine().trim();
-            if (!InputValidator.isValidName(name)) {
-                System.out.println("Invalid name. Try again.\n");
-                continue;
+                System.out.print("Age           : ");
+                String ageInput = sc.nextLine().trim();
+                if (!InputValidator.isValidAge(ageInput))
+                    throw new InvalidUserDataException("age", ageInput);
+                int age = Integer.parseInt(ageInput);
+
+                System.out.print("Email         : ");
+                String email = sc.nextLine().trim();
+                if (!InputValidator.isValidEmail(email))
+                    throw new InvalidUserDataException("email", email);
+
+                System.out.println("\n--- Daily Screen Time in hours per day ---");
+                System.out.print("Productive Apps (AI, Learning, Work)    : ");
+                double productive = InputValidator.parseDouble(sc.nextLine());
+
+                System.out.print("Social Media (Instagram, Twitter)       : ");
+                double social = InputValidator.parseDouble(sc.nextLine());
+
+                System.out.print("Entertainment (Netflix, YouTube, Games) : ");
+                double entertainment = InputValidator.parseDouble(sc.nextLine());
+
+                System.out.print("Communication (WhatsApp, Email, Calls)  : ");
+                double communication = InputValidator.parseDouble(sc.nextLine());
+
+                UsageProfile profile = new UsageProfile(
+                    productive, social, entertainment, communication
+                );
+                DigitalUser user = new DigitalUser(name, age, email, profile);
+                users.add(user);
+                System.out.println("\nUser added: " + user.generateSummary());
+                System.out.println("Risk Status : " + user.getRiskLabel());
+
+            } catch (InvalidUserDataException e) {
+                System.out.println("ERROR: " + e.getMessage());
+                System.out.println("Skipping this entry.\n");
             }
 
-            System.out.print("Age           : ");
-            String ageInput = sc.nextLine().trim();
-            if (!InputValidator.isValidAge(ageInput)) {
-                System.out.println("Invalid age. Try again.\n");
-                continue;
-            }
-            int age = Integer.parseInt(ageInput);
-
-            System.out.print("Email         : ");
-            String email = sc.nextLine().trim();
-            if (!InputValidator.isValidEmail(email)) {
-                System.out.println("Invalid email. Try again.\n");
-                continue;
-            }
-
-            System.out.println("\n--- Daily Screen Time in hours per day ---");
-            System.out.print("Productive Apps (AI, Learning, Work)    : ");
-            double productive = InputValidator.parseDouble(sc.nextLine());
-
-            System.out.print("Social Media (Instagram, Twitter)       : ");
-            double social = InputValidator.parseDouble(sc.nextLine());
-
-            System.out.print("Entertainment (Netflix, YouTube, Games) : ");
-            double entertainment = InputValidator.parseDouble(sc.nextLine());
-
-            System.out.print("Communication (WhatsApp, Email, Calls)  : ");
-            double communication = InputValidator.parseDouble(sc.nextLine());
-
-            UsageProfile profile = new UsageProfile(
-                productive, social, entertainment, communication
-            );
-            DigitalUser user = new DigitalUser(name, age, email, profile);
-            users.add(user);
-
-            System.out.println("\nUser added successfully!");
             System.out.println();
             System.out.print("Add another user? (y/n): ");
             choice = sc.nextLine().trim();
@@ -72,16 +72,35 @@ public class MainApp {
             return;
         }
 
+        // ── SORT by productivity score (Comparable) ──────────────
+        Collections.sort(users);
+
         ClassificationService classifier = new ClassificationService();
-        System.out.println();
         System.out.println("==============================================");
         System.out.println("        ANALYSIS REPORT - ALL USERS          ");
         System.out.println("==============================================");
-
         for (DigitalUser u : users) {
             classifier.analyze(u);
             System.out.println("----------------------------------------------");
         }
+
+        // ── LEADERBOARD — the showstopper ─────────────────────────
+        System.out.println("\n============= PRODUCTIVITY LEADERBOARD =======");
+        System.out.println("  (Sorted best to worst — using Comparable)   ");
+        System.out.println("==============================================");
+        int rank = 1;
+        for (DigitalUser u : users) {
+            System.out.printf("  #%d  %-20s  Score: %5.1f%%  %s%n",
+                rank++,
+                u.getName(),
+                u.getProductivityScore(),
+                u.getRiskLabel()
+            );
+        }
+
+        System.out.println("\n  TOP PERFORMER    : " + users.get(0).getName());
+        System.out.println("  NEEDS ATTENTION  : " + users.get(users.size()-1).getName());
+        System.out.println("==============================================");
 
         FileService.saveReport(users);
         System.out.println("\nReport saved to: output/report.txt");
