@@ -1,4 +1,4 @@
-# 🌐 DigitalBehaviorSystem
+DigitalBehaviorSystem
 
 > *"In the 5G era, the device is the same — but the behavior defines the future."*
 
@@ -6,17 +6,17 @@ A Java OOP project that analyzes how people use their screen time in the post-5G
 
 ---
 
-## 👨‍💻 Author
+Author
 
-**Karesh S** — [@leo10zephyr-tech](https://github.com/leo10zephyr-tech)  
+Karesh S — [@leo10zephyr-tech](https://github.com/leo10zephyr-tech)  
 B.Tech Computer Science | Java OOP Project | CS Department
 
 ---
 
-## 💡 The Problem This Solves
+The Problem This Solves
 
 After 5G arrived, everyone got faster internet. But the real question is —  
-**are people using that speed to grow, or to scroll?**
+are people using that speed to grow, or to scroll?
 
 This system takes real input about daily screen time across 4 categories:
 - Productive Apps (AI tools, Learning, Work)
@@ -28,7 +28,7 @@ And classifies each user's digital behavior with a score, risk level, personaliz
 
 ---
 
-## 🏗️ Project Structure
+Project Structure
 
 ```
 DigitalBehaviorSystem/
@@ -53,61 +53,61 @@ DigitalBehaviorSystem/
 
 ---
 
-## 🧠 OOP Concepts Covered
+OOP Concepts Covered
 
 | Concept | File | What It Does |
 |---|---|---|
-| **Encapsulation** | `Person.java` | Private fields, public getters/setters |
-| **Inheritance** | `DigitalUser extends Person` | Child gets all parent properties |
-| **Abstraction** | `Analyzer.java` | Abstract class forces child to implement analyze() |
-| **Polymorphism** | `ClassificationService.java` | Overrides abstract analyze() with real behavior |
-| **Interface** | `Reportable.java` | Contract — generateSummary, getRiskLabel, getScore |
-| **Custom Exception** | `InvalidUserDataException.java` | Domain-specific error handling |
-| **Enum** | `UsageProfile.java` | DominantCategory — fixed set of behavior types |
-| **Static Members** | `DigitalUser.totalUsers` | Shared counter across all instances |
-| **Comparable** | `DigitalUser.compareTo()` | Auto-sorts users by productivity score |
-| **Collections** | `MainApp.java` | List<DigitalUser> + Collections.sort() |
-| **File I/O** | `FileService.java` | Writes full report to output/report.txt |
-| **Exception Handling** | `MainApp + FileService` | try-catch for bad input and file errors |
-| **Regex** | `InputValidator.java` | Pattern matching for name and email |
+| Encapsulation | `Person.java` | Private fields, public getters/setters |
+| Inheritance | `DigitalUser extends Person` | Child gets all parent properties |
+| Abstraction | `Analyzer.java` | Abstract class forces child to implement analyze() |
+| Polymorphism | `ClassificationService.java` | Overrides abstract analyze() with real behavior |
+| Interface | `Reportable.java` | Contract — generateSummary, getRiskLabel, getScore |
+| Custom Exception | `InvalidUserDataException.java` | Domain-specific error handling |
+| Enum | `UsageProfile.java` | DominantCategory — fixed set of behavior types |
+| Static Members | `DigitalUser.totalUsers` | Shared counter across all instances |
+| Comparable | `DigitalUser.compareTo()` | Auto-sorts users by productivity score |
+| Collections | `MainApp.java` | List<DigitalUser> + Collections.sort() |
+| File I/O | `FileService.java` | Writes full report to output/report.txt |
+| Exception Handling | `MainApp + FileService` | try-catch for bad input and file errors |
+| Regex | `InputValidator.java` | Pattern matching for name and email |
 
 ---
 
-## ⚙️ How to Run
+How to Run
 
-### Prerequisites
+Prerequisites
 - Java JDK 11 or above
 - VS Code with Extension Pack for Java
 
-### Check Java is installed
+Check Java is installed
 ```bash
 java -version
 ```
 
-### Step 1 — Clone the repo
+Step 1 — Clone the repo
 ```bash
 git clone https://github.com/leo10zephyr-tech/DigitalBehaviorSystem.git
 cd DigitalBehaviorSystem
 ```
 
-### Step 2 — Create output folders
+Step 2 — Create output folders
 ```bash
 mkdir -p out output
 ```
 
-### Step 3 — Compile
+Step 3 — Compile
 ```bash
 javac -d out MainApp.java core/Person.java core/Reportable.java core/UsageProfile.java core/Analyzer.java core/DigitalUser.java services/ClassificationService.java services/FileService.java utils/InvalidUserDataException.java utils/InputValidator.java
 ```
 
-### Step 4 — Run
+Step 4 — Run
 ```bash
 java -cp out MainApp
 ```
 
 ---
 
-## 📊 Sample Output
+Sample Output
 
 ```
 =============================================
@@ -159,21 +159,21 @@ Report saved to: output/report.txt
 
 ---
 
-## 🏷️ Behavior Classifications
+Behavior Classifications
 
 | Behavior Type | Condition | Risk Level |
 |---|---|---|
-| 🚀 Digital Achiever | Productive dominant + score > 60% | SAFE |
-| 📈 Moderate Productive | Productive dominant + score < 60% | LOW |
-| 📱 Social Overuser | Social dominant + score < 20% | HIGH |
-| 🌐 Social-Leaning | Social dominant + score > 20% | MEDIUM |
-| 🎮 Entertainment-Hooked | Entertainment dominates | HIGH |
-| 🤝 Connector | Communication dominates | LOW/MEDIUM |
-| ⚖️ Digitally Balanced | All categories roughly equal | MEDIUM |
+| Digital Achiever | Productive dominant + score > 60% | SAFE |
+| Moderate Productive | Productive dominant + score < 60% | LOW |
+| Social Overuser | Social dominant + score < 20% | HIGH |
+| Social-Leaning | Social dominant + score > 20% | MEDIUM |
+| Entertainment-Hooked | Entertainment dominates | HIGH |
+| Connector | Communication dominates | LOW/MEDIUM |
+| Digitally Balanced | All categories roughly equal | MEDIUM |
 
 ---
 
-## 🔄 Program Flow
+Program Flow
 
 ```
 START
@@ -213,7 +213,7 @@ END → git push to GitHub
 
 ---
 
-## 📁 Output File
+Output File
 
 After every run, a full report is saved to:
 ```
@@ -227,7 +227,7 @@ cat output/report.txt
 
 ---
 
-## 🐙 Git Workflow Used
+Git Workflow Used
 
 ```bash
 git init
@@ -247,7 +247,7 @@ git push
 
 ---
 
-## 📌 Why This Project Stands Out
+Why This Project Stands Out
 
 | Normal Java Project | This Project |
 |---|---|
@@ -260,10 +260,10 @@ git push
 
 ---
 
-## 📜 License
+License
 
 This project is open source and available for educational use.
 
 ---
 
-*Built with Java | Powered by OOP | Hosted on GitHub*
+Built with Java | Powered by OOP | Hosted on GitHub
