@@ -9,7 +9,7 @@ A Java OOP project that analyzes how people use their screen time in the post-5G
 Author
 
 Karesh S — [@leo10zephyr-tech](https://github.com/leo10zephyr-tech)  
-B.Tech Computer Science | Java OOP Project | CS Department
+B.Tech Computer Science | Java OOP Project | CSE Department 
 
 ---
 
